@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Carnival Party Rentals — Quebec Winter Magic</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        :root {
+            --bg0: #050a18;
+            --bg1: #0d214d;
+            --ice: #7FDBFF;
+            --snow: #ffffff;
+            --frost: #BEE9FF;
+            --aurora: #7CFFDA;
+            --night: #4D7CFF;
+            --accent: #FF4136;
+            /* Traditional Red for Bonhomme's Sash */
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-heavy: rgba(255, 255, 255, 0.15);
+            --r1: 24px;
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            color: #fff;
+            background: var(--bg0);
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        /* Animated Snow Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(127, 219, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(124, 255, 218, 0.1) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        .container {
+            width: min(1200px, 92vw);
+            margin: 0 auto;
+        }
+
+        /* NAV */
+        .topbar {
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(20px);
+            background: rgba(5, 10, 24, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 100;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+        }
+
+        .brand {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logoMark {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--ice), var(--night));
+            display: grid;
+            place-items: center;
+            font-size: 20px;
+        }
+
+        .navlinks {
+            display: flex;
+            gap: 8px;
+        }
+
+        .navlinks a {
+            font-size: 14px;
+            color: #fff;
+            text-decoration: none;
+            opacity: 0.7;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .navlinks a:hover {
+            opacity: 1;
+            background: var(--glass);
+        }
+
+        /* BUTTONS */
+        .btn {
+            padding: 12px 24px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: var(--glass);
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background: var(--glass-heavy);
+        }
+
+        .btn.primary {
+            background: linear-gradient(90deg, var(--ice), var(--aurora));
+            color: #050a18;
+            border: none;
+            box-shadow: 0 10px 20px rgba(127, 219, 255, 0.3);
+        }
+
+        /* HERO */
+        header {
+            padding: 80px 0 40px;
+        }
+
+        .heroGrid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .card {
+            border-radius: var(--r1);
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .heroMain {
+            padding: 50px;
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: clamp(40px, 5vw, 64px);
+            margin: 20px 0;
+            line-height: 1.1;
+        }
+
+        .badge {
+            background: rgba(255, 65, 54, 0.2);
+            color: #ff851b;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* BONHOMME SECTION (Character Info) */
+        .character-section {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            padding: 60px;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.05), transparent);
+            border-radius: var(--r1);
+            margin: 40px 0;
+        }
+
+        /* GRID SYSTEM */
+        .grid3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .tile {
+            padding: 30px;
+            border-radius: 24px;
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.3s;
+        }
+
+        .tile:hover {
+            background: var(--glass-heavy);
+            border-color: var(--ice);
+        }
+
+        .tile h3 {
+            font-family: 'Fredoka';
+            margin-top: 0;
+            color: var(--ice);
+        }
+
+        /* CONTACT FORM */
+        .contact-box {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            font-family: inherit;
+        }
+
+        @media(max-width: 920px) {
+
+            .heroGrid,
+            .grid3,
+            .character-section {
+                grid-template-columns: 1fr;
+                flex-direction: column;
+            }
+
+            .heroMain {
+                padding: 30px;
+                text-align: center;
+            }
+
+            .navlinks {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="topbar">
+        <div class="container nav">
+            <a href="#" class="brand">
+                <div class="logoMark">❄️</div>
+                <div>
+                    <b>Winter Quebec Carnival Rentals</b><br>
+                    <small style="opacity: 0.6;">Est. Quebec Traditions</small>
+                </div>
+            </a>
+            <div class="navlinks">
+                <a href="#about">The Tradition</a>
+                <a href="#packages">Packages</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <a class="btn primary" href="#contact">Book Now</a>
+        </div>
+    </div>
+
+    <header class="container">
+        <div class="heroGrid">
+            <div class="card heroMain">
+                <span class="badge">The world's largest winter carnival!</span>
+                <h1>Bring the World's Best Winter Party Home</h1>
+                <p style="font-size: 18px; opacity: 0.8; line-height: 1.6;">
+                    Inspired by the legendary <b>Carnaval de Québec</b>. From ice-blue inflatables to traditional maple
+                    taffy setups, we bring the magic of the North to your event.
+                </p>
+                <div style="margin-top: 30px; display: flex; gap: 15px; flex-wrap: wrap;">
+                    <a href="#packages" class="btn primary">View Packages</a>
+                    <a href="https://boutique.carnaval.qc.ca/en/collections/les-plus-populaires" target="_blank"
+                        class="btn">Get your Carnival Merch!</a>
+                </div>
+            </div>
+            <div class="card" style="padding: 30px;">
+                <h3 style="font-family: Fredoka;">Quick Stats</h3>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <div
+                        style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--glass); padding-bottom: 10px;">
+                        <span>Theme</span>
+                        <b>Arctic / Quebec</b>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>Mascot Available</span>
+                        <b style="color: var(--aurora)">Bonhomme</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="container">
+        <div class="character-section card">
+            <div>
+                <h2 style="font-family: Fredoka; font-size: 32px; margin: 0;">Meet Bonhomme Carnaval!</h2>
+                <p style="opacity: 0.8; line-height: 1.8;">
+                    The <b>Bonhomme</b> is the official representative of the Quebec Winter Carnival. He is a giant
+                    snowman wearing a red tuque and a traditional arrow sash (*ceinture fléchée*).
+                    When you book our "Grand Carnival" package, you get a themed character visit that brings the joy and
+                    "Joie de Vivre" of Quebec to your guests!
+                </p>
+            </div>
+            <div>
+                <img src="/public/mascot.jpg" alt="" width="450" height="300" style="border-radius: 10%;">
+            </div>
+        </div>
+
+        <div class="grid3">
+            <div class="tile">
+                <h3>Ice Sculptures</h3>
+                <p>We design and craft handmade ice decorations tailored to create memorable and visually stunning
+                    experiences.</p>
+            </div>
+            <div class="tile">
+                <h3>Night Parades</h3>
+                <p>Add LED-lit inflatables and music to recreate the magical evening carnival atmosphere.</p>
+            </div>
+            <div class="tile">
+                <h3>Winter Games</h3>
+                <p>From simulated "Ice Canoe" racing to giant snowball tosses (soft-foam).</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tradition" class="container">
+        <div class="character-section card">
+            <div class="video-wrapper">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/wxp-8oZxRpU?si=mriGMifwKogj-f1j"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div>
+                <h2 style="font-size: 32px; margin-top: 0;">What makes it special?</h2>
+                <p style="opacity: 0.8; line-height: 1.8;">
+                    The <b>Carnaval de Québec</b> is more than just cold weather—it's about the warmth of the community.
+                    From the <i>Ceinture Fléchée</i> (Arrow Sash) to the <i>Caribou</i> drink and the world-famous Ice
+                    Canoe
+                    Race, the carnival represents survival and celebration in the heart of winter.
+                </p>
+                <ul style="opacity: 0.8; line-height: 1.8;">
+                    <li><b>The Ice Palace:</b> Every year, a new glowing castle is built for Bonhomme.</li>
+                    <li><b>The Night Parades:</b> Giant floats and dancers light up the snowy streets.</li>
+                    <li><b>Snow Sculptures:</b> Artists from around the world compete in giant snow carving.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section id="packages"
+        style="background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(127, 219, 255, 0.05) 100%); padding: 100px 0;">
+        <div class="container">
+            <h2
+                style="font-family: 'Fredoka', sans-serif; text-align: center; font-size: 42px; margin-bottom: 50px; letter-spacing: -1px;">
+                Choose Your Frosty Adventure</h2>
+
+            <div class="grid3"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: stretch;">
+
+                <div class="tile"
+                    style="display: flex; flex-direction: column; justify-content: space-between; padding: 40px 30px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; transition: 0.3s ease;">
+                    <div>
+                        <h3
+                            style="font-family: 'Fredoka', sans-serif; font-size: 26px; margin: 0 0 10px 0; color: var(--ice);">
+                            Daily Pass</h3>
+                        <p style="font-weight: 600; font-size: 14px; margin-bottom: 20px; opacity: 0.9;">February 21 to
+                            March 8</p>
+                        <ul style="text-align: left; font-size: 14px; opacity: 0.8; padding: 0; list-style: none;">
+                            <li style="margin-bottom: 12px; line-height: 1.5; display: flex; gap: 10px;">
+                                ❄️ This daily ticket is valid for one day only, between February 21 and 22, or between
+                                February
+                                28 and March 8.
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <hr style="opacity: 0.1; margin: 25px 0;">
+                        <div style="font-size: 28px; font-weight: 700; margin-bottom: 15px;">$17.25 <span
+                                style="font-size: 14px; opacity: 0.6; font-weight: 400;">/ day</span></div>
+                        <a href="#contact" class="btn"
+                            style="display: block; text-align: center; width: 100%; box-sizing: border-box;">Reserve</a>
+                    </div>
+                </div>
+
+                <div class="tile"
+                    style="display: flex; flex-direction: column; justify-content: space-between; padding: 50px 30px 40px; background: rgba(127, 219, 255, 0.12); border: 2px solid var(--ice); border-radius: 24px; transform: scale(1.05); box-shadow: 0 20px 40px rgba(0,0,0,0.3); position: relative; z-index: 2;">
+                    <div
+                        style="position: absolute; top: -16px; left: 50%; transform: translateX(-50%); background: var(--ice); color: #050a18; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">
+                        Best Value</div>
+                    <div>
+                        <h3
+                            style="font-family: 'Fredoka', sans-serif; font-size: 26px; margin: 0 0 10px 0; color: #fff;">
+                            Effigy Carnival</h3>
+                        <p style="font-weight: 600; font-size: 14px; margin-bottom: 20px; color: var(--ice);">Full
+                            10-Day
+                            Festival Access</p>
+                        <p style="font-size: 14px; opacity: 0.9; margin-bottom: 15px; line-height: 1.5;">The Carnaval
+                            Effigy is your essential pass for 10 full days of festivities at the main festival site.</p>
+                        <ul style="text-align: left; font-size: 14px; opacity: 0.9; padding: 0; list-style: none;">
+                            <li style="margin-bottom: 10px; display: flex; gap: 10px;">
+                                Mandatory for visitors aged 13+
+                            </li>
+                            <li style="margin-bottom: 10px; display: flex; gap: 10px;">
+                                Electronic ticket for easy access
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <hr style="opacity: 0.2; margin: 25px 0;">
+                        <div style="font-size: 32px; font-weight: 800; margin-bottom: 15px; color: #fff;">$35.00</div>
+                        <a href="#contact" class="btn primary"
+                            style="display: block; text-align: center; width: 100%; box-sizing: border-box; box-shadow: 0 10px 20px rgba(127, 219, 255, 0.2);">Reserve
+                            Now</a>
+                    </div>
+                </div>
+
+                <div class="tile"
+                    style="display: flex; flex-direction: column; justify-content: space-between; padding: 40px 30px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px;">
+                    <div>
+                        <h3
+                            style="font-family: 'Fredoka', sans-serif; font-size: 26px; margin: 0 0 10px 0; color: var(--ice);">
+                            Season Pass</h3>
+                        <p style="font-weight: 600; font-size: 14px; margin-bottom: 20px; opacity: 0.9;">February 21 to
+                            March 8</p>
+                        <ul style="text-align: left; font-size: 14px; opacity: 0.8; padding: 0; list-style: none;">
+                            <li style="margin-bottom: 12px; line-height: 1.5; display: flex; gap: 10px;">
+                                Get this season pass at a special price when you purchase your Carnival Effigy.
+                            </li>
+                            <li style="margin-bottom: 12px; line-height: 1.5; display: flex; gap: 10px;">
+                                Valid every day at the Gougoune & Doudoune site.
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <hr style="opacity: 0.1; margin: 25px 0;">
+                        <div style="font-size: 28px; font-weight: 700; margin-bottom: 15px;">$40.25 <span
+                                style="font-size: 14px; opacity: 0.6; font-weight: 400;">/ day</span></div>
+                        <a href="#contact" class="btn"
+                            style="display: block; text-align: center; width: 100%; box-sizing: border-box;">Reserve</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <p style="text-align: center; font-size: 12px; opacity: 0.5; margin-top: 60px; font-style: italic;">
+                *Prices include taxes. Digital tickets will be sent immediately upon purchase.
+            </p>
+        </div>
+    </section>
+
+    <section id="contact" class="container" style="padding: 100px 0;">
+        <div class="card contact-box">
+            <h2 style="font-family: Fredoka;">Secure Your Date</h2>
+            <p>Our winter dates fill up fast! Let's start planning.</p>
+
+            <form style="margin-top: 30px;">
+                <div class="grid3" style="grid-template-columns: 1fr 1fr; margin-bottom: 15px;">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <textarea rows="4" placeholder="Your custom message..."></textarea>
+                </div>
+                <button type="submit" class="btn primary" style="width: 100%; padding: 16px;">Send Inquiry</button>
+            </form>
+        </div>
+    </section>
+
+
+
+    <footer style="padding: 40px; text-align: center; opacity: 0.5; font-size: 13px;">
+        <p>&copy; 2026 Carnival Party Rentals. All rights reserved. Not affiliated with the official Carnaval de
+            Québec.
+        </p>
+    </footer>
+
+</body>
+
+</html>
